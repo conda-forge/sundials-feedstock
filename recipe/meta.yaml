@@ -14,7 +14,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   features:
     - blas_{{ variant }}  # [not win]
     - vc9     # [win and py27]
@@ -25,11 +25,11 @@ requirements:
   build:
     - cmake
     - blas 1.1 {{ variant }}  # [not win]
-    - openblas 0.2.18*  # [not win]
+    - openblas 0.2.18|0.2.18.*  # [not win]
     - python  # [win]
   run:
     - blas 1.1 {{ variant }}  # [not win]
-    - openblas 0.2.18*  # [not win]
+    - openblas 0.2.18|0.2.18.*  # [not win]
 
 test:
   requires:
