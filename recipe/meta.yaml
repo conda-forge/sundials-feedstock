@@ -1,7 +1,6 @@
 {% set name = "sundials" %}
-{% set version = "2.6.2" %}
-{% set sha256 = "d8ed0151509dd2b0f317b318a4175f8b95a174340fc3080b8c20617da8aa4d2f" %}
-{% set md5 = "3deeb0ede9f514184c6bd83ecab77d95" %}
+{% set version = "2.7.0" %}
+{% set sha256 = "d39fcac7175d701398e4eb209f7e92a5b30a78358d4a0c0fcc23db23c11ba104" %}
 {% set variant = "openblas" %}
 
 package:
@@ -10,11 +9,11 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: http://pkgs.fedoraproject.org/repo/pkgs/sundials/sundials-2.6.2.tar.gz/{{ md5 }}/{{ name }}-{{ version }}.tar.gz
+  url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
-  number: 2
+  number: 0
   features:
     - blas_{{ variant }}  # [not win]
     - vc9     # [win and py27]
