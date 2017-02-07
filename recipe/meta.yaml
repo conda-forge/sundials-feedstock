@@ -25,11 +25,11 @@ requirements:
   build:
     - cmake
     - blas 1.1 {{ variant }}  # [not win]
-    - openblas 0.2.18|0.2.18.*  # [not win]
+    - openblas 0.2.19|0.2.19.*  # [not win]
     - python  # [win]
   run:
     - blas 1.1 {{ variant }}  # [not win]
-    - openblas 0.2.18|0.2.18.*  # [not win]
+    - openblas 0.2.19|0.2.19.*  # [not win]
 
 test:
   requires:
