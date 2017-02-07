@@ -14,7 +14,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 2
+  number: 3
   features:
     - blas_{{ variant }}  # [not win]
     - vc9     # [win and py27]
