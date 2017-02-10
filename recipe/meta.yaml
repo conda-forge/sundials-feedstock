@@ -13,12 +13,13 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 2
   features:
     - blas_{{ variant }}  # [not win]
-    - vc9     # [win and py27]
-    - vc10    # [win and py34]
-    - vc14    # [win and py35]
+    - vc9  # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and py>=35]
+  skip: true  # [win and py>35]
 
 requirements:
   build:
@@ -41,8 +42,9 @@ about:
   home: http://computation.llnl.gov/casc/sundials/main.html
   license: BSD 3-Clause
   license_file: LICENSE
-  summary: 'SUit of Nonlinear and DIfferential/ALgebraic equation Solvers'
+  summary: 'SUite of Nonlinear and DIfferential/ALgebraic equation Solvers'
 
 extra:
   recipe-maintainers:
     - bjodah
+    - jschueller

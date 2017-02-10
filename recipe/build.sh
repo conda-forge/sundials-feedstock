@@ -27,5 +27,4 @@ cmake \
     -DCMAKE_MACOSX_RPATH=$OSX_RPATH \
     ..
 
-cmake --build .
-cmake --build . --target install
+make install -j${CPU_COUNT}
