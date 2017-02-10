@@ -11,6 +11,9 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    # http://sundials.2283335.n4.nabble.com/Re-CVODE-suggestion-td4653782.html
+    - sundials-link-libs.patch
 
 build:
   number: 2
