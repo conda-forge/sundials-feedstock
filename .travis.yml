@@ -9,10 +9,15 @@ osx_image: xcode6.4
 env:
   global:
     # The BINSTAR_TOKEN secure variable. This is defined canonically in conda-forge.yml.
-    - secure: "Y1BQo+tuE2GInHoJ1sRM/t6rCPoxIREfdKc7sCXkbZsAbTb0YKsnWb+1YHUShNm5jwRCfqQc5TAckCU9l7PwLsAlyPakbY7utUtDsx6O2mEqi5BgWANxmvuEl8LVLXsQm0GjqFybUQmIgihSFhD+PdKfPa2X2NFDlehkBHzswptfroBa2RJJc9KPKzyboorCVPTQfCrnce6ls0wvnDoqPAF7AAc3emv64XpEIgC6VQMpDDlgPCq5kql7E87+IP8RXe23zNfbpCc28A/hNCzRiUhZaDL0c9nfn1fiSfLmVgCMG5g9n2dGGXjzf2wyP77et6Iw8TDKwoGD38ww9H4zfDoWeDCAe8p/CKEGjmz9YL4BSaqKr0yuE+LG3RKifnrPvSg4Wysh+i1ORyzCBTpBWlThls9RVyeje47JbQ9nDqLLytE6dqtJIP8z/laVsExIMbCTfovOKmKlX53wCihEVOuxQhIkG3wZ2x7ilVkZ5ijErD8+LR9KTQROH6fpEBDdmUUwaHngrMuSdrLLpkcc8wEullJxOOwAG1wkrzBRDAugygOzB47q7iOY1yBfgOnIOKMNWTXml4S2HVOKa1gtTmUjTmt7oHvc+Wry6c8Hf/I2lPloIEfiaMwTsTYm0VORdbbWNF3142tVgKt2bZxnaIJveaF5DLsDHy6qKgMBCVE="
+    - secure: "kpYalVvFSor8TWbFY2tpkFauQc9nqjuNBwPGZhfQT99IzFcBW9gmXVnEBXXqGoy07MDL9ULUVPGGYgUjKqvm5Qz3uUwNM7Xq/AowA4bueIyyXtHhY2gWFnn3X1b4FWBNeLeaAaFzfk7HJ6hVVURkfxL4v5ZKG2EkMJA9uxrIWXvBD53kUEjGhVbZmTqCJ06lLuX9DqIrVl1DN0C037LZEVzcUN2sh82kDbL58LwSWIzu1/RaTJTJu3ZvsKULBWfkDzvrhPM8ubobDTwn65XG9D9118g2+JZb7TC0pmf5fRuKyCu0ssi3IJN64n9hXDWyvuNXBtIvFk7zb1L0qUPIs+ZqsagLhICZE89ruTd/dwnIBcTlAFoTyd/BWr7+UxNvsPausVUFHkEX3fVXj8wgyQ97pw4H/fxF/pd08sn0TR4XuuePKn43/vG+A3Sub9CDj4qI7gFs1EUGQGm286EIt02G6/x9Ri83yR1gLfmPFOxjPmoAv4j8/X6TPMOYb2wyF9OXVbio18uAiPCN5fF/mmJgDKUNAlC2MxdDnsL4KoFXVVNGfjcaeTOLOZwuV7nekGk8kQQPqTIZoNftoEahO767IBPhqr3Xwrwd4iwS7rXpJwj+hix05BL8OZpy7xHBP50GM1SwMzJNLdNFxwxV848MpIhln+H9Qz1eMp2qKAA="
 
 
 before_install:
+    # Fast finish the PR.
+    - |
+      (curl https://raw.githubusercontent.com/conda-forge/conda-forge-build-setup-feedstock/master/recipe/ff_ci_pr_build.py | \
+          python - -v --ci "travis" "${TRAVIS_REPO_SLUG}" "${TRAVIS_BUILD_NUMBER}" "${TRAVIS_PULL_REQUEST}") || exit 1
+
     # Remove homebrew.
     - |
       echo ""

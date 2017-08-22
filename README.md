@@ -7,7 +7,7 @@ Package license: BSD 3-Clause
 
 Feedstock license: BSD 3-Clause
 
-Summary: SUit of Nonlinear and DIfferential/ALgebraic equation Solvers
+Summary: SUite of Nonlinear and DIfferential/ALgebraic equation Solvers
 
 
 
