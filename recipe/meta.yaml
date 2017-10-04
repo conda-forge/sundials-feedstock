@@ -1,6 +1,5 @@
 {% set name = "sundials" %}
-{% set version = "2.7.0" %}
-{% set sha256 = "d39fcac7175d701398e4eb209f7e92a5b30a78358d4a0c0fcc23db23c11ba104" %}
+{% set version = "3.0.0" %}
 {% set variant = "openblas" %}
 
 package:
@@ -10,23 +9,20 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
-  patches:
-    # http://sundials.2283335.n4.nabble.com/Re-CVODE-suggestion-td4653782.html
-    - sundials-link-libs.patch
+  sha256: 28b8e07eecfdef66e2c0d0ea0cb1b91af6e4e94d71008abfe80c27bf39f63fde
 
 build:
-  number: 3
+  number: 0
   features:
     - blas_{{ variant }}  # [not win]
     - vc9  # [win and py27]
-    - vc10  # [win and py34]
     - vc14  # [win and py>=35]
   skip: true  # [win and py>35]
 
 requirements:
   build:
     - cmake
+    - msinttypes  # [win and py<35]
     - blas 1.1 {{ variant }}  # [not win]
     - openblas 0.2.19|0.2.19.*  # [not win]
     - suitesparse  # [not win]
