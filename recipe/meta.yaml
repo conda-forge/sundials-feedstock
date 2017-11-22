@@ -1,5 +1,5 @@
 {% set name = "sundials" %}
-{% set version = "3.0.0" %}
+{% set version = "3.1.0" %}
 {% set variant = "openblas" %}
 
 package:
@@ -9,7 +9,7 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
-  sha256: 28b8e07eecfdef66e2c0d0ea0cb1b91af6e4e94d71008abfe80c27bf39f63fde
+  sha256: 18d52f8f329626f77b99b8bf91e05b7d16b49fde2483d3a0ea55496ce4cdd43a
 
 build:
   number: 200
@@ -38,6 +38,9 @@ test:
     - python  # [win]
   files:
     - cvRoberts_dns.c
+  commands:
+    - conda inspect linkages -p ${PREFIX} sundials  # [not win]
+    - conda inspect objects -p ${PREFIX} sundials  # [osx]
 
 about:
   home: http://computation.llnl.gov/casc/sundials/main.html
