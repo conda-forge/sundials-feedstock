@@ -39,6 +39,7 @@ test:
   files:
     - cvRoberts_dns.c
     - cvAdvDiff_bndL.c
+    - cvAdvDiff_bnd_omp.c
   commands:
     - conda inspect linkages -p ${PREFIX} sundials  # [not win]
     - conda inspect objects -p ${PREFIX} sundials  # [osx]
