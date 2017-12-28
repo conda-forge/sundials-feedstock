@@ -27,6 +27,8 @@ cmake \
     -DCMAKE_MACOSX_RPATH=$OSX_RPATH \
     -DKLU_ENABLE=ON \
     -DKLU_LIBRARY_DIR=${PREFIX}/lib \
-    ..
+    -DSUNDIALS_INDEX_TYPE=int32_t \
+    ..  # int32_t needed for Lapack not to be disabled
+
 
 make install -j${CPU_COUNT}
