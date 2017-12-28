@@ -8,7 +8,9 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
+  #url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
+  # llnl.gov server down, temporarily using a mirror:
+  url: http://hera.physchem.kth.se/~repo/1a84ca41c7f71067e03d519ddbcd9dae/{{ name }}-{{ version }}.tar.gz
   sha256: 18d52f8f329626f77b99b8bf91e05b7d16b49fde2483d3a0ea55496ce4cdd43a
 
 build:
