@@ -12,6 +12,7 @@ cmake ^
     -DEXAMPLES_INSTALL=OFF ^
     -DOPENMP_ENABLE=OFF ^
     -DLAPACK_ENABLE=OFF ^
+    -DSUNDIALS_INDEX_TYPE=int32_t ^
     ..
 
 nmake
