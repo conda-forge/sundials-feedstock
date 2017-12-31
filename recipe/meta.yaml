@@ -38,6 +38,7 @@ test:
   requires:
     - cmake
     - python  # [win]
+    - gcc  # [linux]
   files:
     - cvRoberts_dns.c
     - cvAdvDiff_bndL.c
