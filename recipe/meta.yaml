@@ -33,7 +33,6 @@ requirements:
     - openblas 0.2.20|0.2.20.*  # [not win]
     - suitesparse  # [not win]
     - libgcc  # [linux]
-    - libgfortran  # [linux]
 
 test:
   requires:
