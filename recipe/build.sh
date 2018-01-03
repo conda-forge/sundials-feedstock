@@ -24,9 +24,13 @@ cmake \
     -DOPENMP_ENABLE=$WITH_OPENMP \
     -DLAPACK_ENABLE=ON \
     -DLAPACK_LIBRARIES=$PREFIX/lib/libopenblas${SHLIB_EXT} \
+    -DCMAKE_INSTALL_RPATH="${PREFIX}/lib" \
+    -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
     -DCMAKE_MACOSX_RPATH=$OSX_RPATH \
     -DKLU_ENABLE=ON \
     -DKLU_LIBRARY_DIR=${PREFIX}/lib \
-    ..
+    -DSUNDIALS_INDEX_TYPE=int32_t \
+    ..  # int32_t needed for Lapack not to be disabled
+
 
 make install -j${CPU_COUNT}

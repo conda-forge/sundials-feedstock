@@ -12,7 +12,7 @@ source:
   sha256: 18d52f8f329626f77b99b8bf91e05b7d16b49fde2483d3a0ea55496ce4cdd43a
 
 build:
-  number: 200
+  number: 201
   features:
     - blas_{{ variant }}  # [not win]
     - vc9  # [win and py27]
@@ -38,8 +38,11 @@ test:
   requires:
     - cmake
     - python  # [win]
+    - gcc  # [linux]
   files:
     - cvRoberts_dns.c
+    - cvAdvDiff_bndL.c
+    - cvAdvDiff_bnd_omp.c
   commands:
     - conda inspect linkages -p ${PREFIX} sundials  # [not win]
     - conda inspect objects -p ${PREFIX} sundials  # [osx]
