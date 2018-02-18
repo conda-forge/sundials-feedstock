@@ -41,6 +41,7 @@ test:
     - gcc  # [linux]
   files:
     - cvRoberts_dns.c
+    - cvRoberts_klu.c
     - cvAdvDiff_bndL.c
     - cvAdvDiff_bnd_omp.c
   commands:
