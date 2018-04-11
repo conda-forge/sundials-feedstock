@@ -16,7 +16,7 @@ source:
     - sundials-link-libs.patch
 
 build:
-  number: 4
+  number: 5
   features:
     - blas_{{ variant }}  # [not win]
     - vc9  # [win and py27]
@@ -30,10 +30,12 @@ requirements:
     - openblas 0.2.20|0.2.20.*  # [not win]
     - suitesparse  # [not win]
     - python  # [win]
+    - gcc  # [linux]
   run:
     - blas 1.1 {{ variant }}  # [not win]
     - openblas 0.2.20|0.2.20.*  # [not win]
     - suitesparse  # [not win]
+    - libgcc  # [linux]
 
 test:
   requires:
