@@ -1,5 +1,5 @@
 {% set name = "sundials" %}
-{% set version = "3.1.0" %}
+{% set version = "3.1.1" %}
 {% set variant = "openblas" %}
 
 package:
@@ -9,10 +9,10 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
-  sha256: 18d52f8f329626f77b99b8bf91e05b7d16b49fde2483d3a0ea55496ce4cdd43a
+  sha256: a24d643d31ed1f31a25b102a1e1759508ce84b1e4739425ad0e18106ab471a24
 
 build:
-  number: 201
+  number: 0
   features:
     - blas_{{ variant }}  # [not win]
     - vc9  # [win and py27]
