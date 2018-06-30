@@ -12,27 +12,25 @@ source:
   sha256: 18d52f8f329626f77b99b8bf91e05b7d16b49fde2483d3a0ea55496ce4cdd43a
 
 build:
-  number: 201
+  number: 202
   features:
     - blas_{{ variant }}  # [not win]
-    - vc9  # [win and py27]
-    - vc14  # [win and py>=35]
-  skip: true  # [win and py>35]
 
 requirements:
   build:
     - cmake
-    - msinttypes  # [win and py<35]
+    - {{ compiler('fortran') }}
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - msinttypes  # [win and vc<14]
     - blas 1.1 {{ variant }}  # [not win]
-    - openblas 0.2.20|0.2.20.*  # [not win]
+    - openblas                  # [not win]
     - suitesparse  # [not win]
-    - python  # [win]
-    - gcc  # [linux]
   run:
     - blas 1.1 {{ variant }}  # [not win]
-    - openblas 0.2.20|0.2.20.*  # [not win]
+    - openblas                  # [not win]
     - suitesparse  # [not win]
-    - libgcc  # [linux]
 
 test:
   requires:
