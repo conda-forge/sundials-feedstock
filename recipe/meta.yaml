@@ -19,7 +19,6 @@ build:
 requirements:
   build:
     - cmake
-    - {{ compiler('fortran') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
