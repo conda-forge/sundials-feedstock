@@ -24,12 +24,10 @@ requirements:
   host:
     - msinttypes  # [win and vc<14]
     - blas 1.1 {{ variant }}  # [not win]
-    - openblas                  # [not win]
-    - suitesparse  # [not win]
+    - openblas  # [not win]
   run:
     - blas 1.1 {{ variant }}  # [not win]
-    - openblas                  # [not win]
-    - suitesparse  # [not win]
+    - openblas  # [not win]
 
 test:
   requires:
