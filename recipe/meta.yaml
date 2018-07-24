@@ -13,6 +13,7 @@ source:
 
 build:
   number: 200
+  skip: true  # [py<36]
   features:
     - blas_{{ variant }}  # [not win]
 
