@@ -34,8 +34,8 @@ requirements:
 test:
   requires:
     - cmake
-    - python  # [win]
-    - gcc  # [linux]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   files:
     - cvRoberts_dns.c
     - cvRoberts_klu.c
