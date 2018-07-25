@@ -37,6 +37,7 @@ test:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   files:
+    - CMakeLists.txt
     - cvRoberts_dns.c
     - cvRoberts_klu.c
     - cvAdvDiff_bndL.c
