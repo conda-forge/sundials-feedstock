@@ -16,23 +16,24 @@ source:
     - sundials-link-libs.patch
 
 build:
-  number: 5
+  number: 6
   features:
     - blas_{{ variant }}  # [not win]
-    - vc9  # [win and py27]
-    - vc14  # [win and py>=35]
-  skip: true  # [win and py>35]
 
 requirements:
   build:
     - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - msinttypes  # [win and vc<14]
     - blas 1.1 {{ variant }}  # [not win]
-    - openblas 0.2.20|0.2.20.*  # [not win]
+    - openblas                 # [not win]
     - suitesparse  # [not win]
     - python  # [win]
   run:
     - blas 1.1 {{ variant }}  # [not win]
-    - openblas 0.2.20|0.2.20.*  # [not win]
+    - openblas                 # [not win]
     - suitesparse  # [not win]
 
 test:

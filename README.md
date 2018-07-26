@@ -14,14 +14,16 @@ Summary: SUite of Nonlinear and DIfferential/ALgebraic equation Solvers
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/sundials-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/sundials-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/sundials-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/sundials-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/sundials-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/sundials-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/sundials-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/sundials-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/sundials-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/sundials-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/sundials-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/sundials-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/sundials/badges/version.svg)](https://anaconda.org/conda-forge/sundials)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/sundials/badges/downloads.svg)](https://anaconda.org/conda-forge/sundials)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-sundials-green.svg)](https://anaconda.org/conda-forge/sundials) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/sundials.svg)](https://anaconda.org/conda-forge/sundials) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/sundials.svg)](https://anaconda.org/conda-forge/sundials) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/sundials.svg)](https://anaconda.org/conda-forge/sundials) |
 
 Installing sundials
 ===================
