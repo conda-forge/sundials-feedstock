@@ -12,7 +12,7 @@ source:
   sha256: a24d643d31ed1f31a25b102a1e1759508ce84b1e4739425ad0e18106ab471a24
 
 build:
-  number: 201
+  number: 202
   features:
     - blas_{{ variant }}  # [not win]
 
@@ -21,8 +21,8 @@ requirements:
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-  host:
     - msinttypes  # [win and vc<14]
+  host:
     - blas 1.1 {{ variant }}  # [not win]
     - openblas                  # [not win]
     - suitesparse  # [not win]
@@ -34,6 +34,7 @@ requirements:
 test:
   requires:
     - cmake
+    - msinttypes  # [win and vc<14]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   files:
