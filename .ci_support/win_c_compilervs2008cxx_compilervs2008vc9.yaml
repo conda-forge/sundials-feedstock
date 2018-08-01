@@ -2,11 +2,7 @@ c_compiler:
 - vs2008
 cxx_compiler:
 - vs2008
-openblas:
-- 0.2.20
 pin_run_as_build:
-  openblas:
-    max_pin: x.x.x
   vc:
     max_pin: x
 vc:
