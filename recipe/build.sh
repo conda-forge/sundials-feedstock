@@ -27,6 +27,7 @@ cmake \
     -DCMAKE_MACOSX_RPATH=ON \
     -DKLU_ENABLE=ON \
     -DKLU_LIBRARY_DIR=${PREFIX}/lib \
+    -DSUNDIALS_F77_FUNC_CASE="LOWER" -DSUNDIALS_F77_FUNC_UNDERSCORES="ONE" \
     -DSUNDIALS_INDEX_TYPE=int32_t \
     ..  # int32_t needed for Lapack not to be disabled
 
