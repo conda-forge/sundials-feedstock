@@ -1,5 +1,7 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '10.9'
+build_number_decrement:
+- '1000'
 c_compiler:
 - toolchain_c
 channel_sources:
@@ -13,7 +15,13 @@ macos_machine:
 macos_min_version:
 - '10.9'
 openblas:
-- 0.2.20
+- 0.3.3
 pin_run_as_build:
   openblas:
     max_pin: x.x.x
+zip_keys:
+- - c_compiler
+  - cxx_compiler
+  - channel_sources
+  - channel_targets
+  - build_number_decrement
