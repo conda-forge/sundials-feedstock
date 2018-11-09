@@ -16,7 +16,7 @@ source:
     - sundials-link-libs.patch
 
 build:
-  number: 6
+  number: 1000
   features:
     - blas_{{ variant }}  # [not win]
 
