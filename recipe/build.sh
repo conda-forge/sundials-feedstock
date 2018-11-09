@@ -6,7 +6,8 @@ cd build
 # EXAMPLES_ENABLE=1 enables tests to be run (requires Python)
 
 if [ $(uname -s) == 'Darwin' ]; then
-    WITH_OPENMP=0  # CMake script fails to setup OpenMP_C_FLAGS anyway 
+    WITH_OPENMP=0  # CMake script fails to setup OpenMP_C_FLAGS anyway
+    unset FC  # https://travis-ci.org/conda-forge/sundials-feedstock/builds/452903219#L495
 else
     WITH_OPENMP=1
 fi
