@@ -1,6 +1,5 @@
 {% set name = "sundials" %}
 {% set version = "3.2.0" %}
-{% set variant = "openblas" %}
 
 package:
   name: {{ name|lower }}
@@ -12,9 +11,7 @@ source:
   sha256: d2b690afecadf8b5a048bb27ab341de591d714605b98d3518985dfc2250e93f9
 
 build:
-  number: 1
-  features:
-    - blas_{{ variant }}  # [not win]
+  number: 2
 
 requirements:
   build:
@@ -23,12 +20,9 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - msinttypes  # [win and vc<14]
-    - blas 1.1 {{ variant }}  # [not win]
-    - openblas                  # [not win]
+    - liblapack  # [not win]
     - suitesparse  # [not win]
   run:
-    - blas 1.1 {{ variant }}  # [not win]
-    - openblas                  # [not win]
     - suitesparse  # [not win]
 
 test:
