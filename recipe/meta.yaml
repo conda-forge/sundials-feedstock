@@ -22,6 +22,7 @@ requirements:
   host:
     - libblas
     - libcblas
+    - liblapack
     - msinttypes  # [win and vc<14]
     - suitesparse  # [not win]
   run:
