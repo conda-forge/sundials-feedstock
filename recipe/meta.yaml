@@ -1,5 +1,5 @@
 {% set name = "sundials" %}
-{% set version = "3.2.0" %}
+{% set version = "3.2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -8,10 +8,10 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
-  sha256: d2b690afecadf8b5a048bb27ab341de591d714605b98d3518985dfc2250e93f9
+  sha256: 47d94d977ab2382cdcdd02f72a25ebd4ba8ca2634bbb2f191fe1636e71c86808
 
 build:
-  number: 2
+  number: 0
 
 requirements:
   build:
