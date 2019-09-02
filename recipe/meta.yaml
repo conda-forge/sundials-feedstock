@@ -2,7 +2,7 @@
 {% set version = "3.2.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -11,7 +11,7 @@ source:
   sha256: 47d94d977ab2382cdcdd02f72a25ebd4ba8ca2634bbb2f191fe1636e71c86808
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
