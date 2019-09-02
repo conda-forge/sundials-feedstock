@@ -1,8 +1,6 @@
 cmake_minimum_required (VERSION 2.8)
 
-if (NOT DEFINED CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type")
-endif ()
+set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type")
 
 project (my_sundials_test C)
 
@@ -31,25 +29,20 @@ endforeach ()
 
 include_directories (${SUNDIALS_INCLUDE_DIR})
 
-if (UNIX)
-  find_library (BLAS_LIBRARIES openblas)
-endif ()
-
 add_executable (cvRoberts_dns cvRoberts_dns.c)
 add_executable (cvRoberts_klu cvRoberts_klu.c)
 add_executable (cvAdvDiff_bndL cvAdvDiff_bndL.c)
 target_link_libraries (cvRoberts_dns LINK_PUBLIC ${SUNDIALS_LIB_cvode} ${SUNDIALS_LIB_nvecserial})
 target_link_libraries (cvRoberts_klu LINK_PUBLIC ${SUNDIALS_LIB_cvode} ${SUNDIALS_LIB_nvecserial} ${SUNDIALS_LIB_sunlinsolklu})
-target_link_libraries (cvAdvDiff_bndL LINK_PUBLIC ${SUNDIALS_LIB_cvode} ${SUNDIALS_LIB_nvecserial} ${SUNDIALS_LIB_sunlinsollapackband} ${BLAS_LIBRARIES})
+target_link_libraries (cvAdvDiff_bndL LINK_PUBLIC ${SUNDIALS_LIB_cvode} ${SUNDIALS_LIB_nvecserial} ${SUNDIALS_LIB_sunlinsollapackband})
 if (UNIX)
   target_link_libraries (cvAdvDiff_bndL LINK_PUBLIC m)
 endif ()
-
 add_test (test_roberts_dns cvRoberts_dns)
 add_test (test_roberts_klu cvRoberts_klu)
 add_test (test_advdiff_bndL cvAdvDiff_bndL)
 
-if (OpenMP_C_FOUND)
+if (SUNDIALS_LIB_nvecopenmp)
   add_executable (cvAdvDiff_bnd_omp cvAdvDiff_bnd_omp.c)
   target_link_libraries (cvAdvDiff_bnd_omp LINK_PUBLIC ${SUNDIALS_LIB_cvode} ${SUNDIALS_LIB_nvecopenmp})
   if (UNIX)
