@@ -1,5 +1,5 @@
 {% set name = "sundials" %}
-{% set version = "4.1.0" %}
+{% set version = "3.1.1" %}
 
 package:
   name: {{ name }}
@@ -8,16 +8,16 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
-  sha256: 280de1c27b2360170a6f46cb3799b2aee9dff3bddbafc8b08c291a47ab258aa5
-
+  sha256: a24d643d31ed1f31a25b102a1e1759508ce84b1e4739425ad0e18106ab471a24
 build:
-  number: 2
+  number: 0
 
 requirements:
   build:
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
   host:
     - msinttypes  # [win and vc<14]
     - liblapack  # [not win]
