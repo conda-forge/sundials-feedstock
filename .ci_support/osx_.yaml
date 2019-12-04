@@ -19,4 +19,4 @@ macos_machine:
 macos_min_version:
 - '10.9'
 suitesparse:
-- '5.4'
+- '5.6'
