@@ -1,5 +1,5 @@
 {% set name = "sundials" %}
-{% set version = "5.0.0" %}
+{% set version = "5.1.0" %}
 
 package:
   name: {{ name }}
@@ -8,10 +8,10 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
-  sha256: 345141ec01c641d0bdfb3476c478b7e74fd6a7192a478a27cafe75d9da2d7dd3
+  sha256: fb22d14fad42203809dc46d046b001149ec4e901b23882bd4a80619157fd9b21
 
 build:
-  number: 3
+  number: 0
   run_exports:
     - {{ pin_subpackage('sundials', max_pin='x.x') }}
 
