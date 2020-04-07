@@ -44,7 +44,7 @@ test:
 
 about:
   home: http://computation.llnl.gov/casc/sundials/main.html
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_file: LICENSE
   summary: SUite of Nonlinear and DIfferential/ALgebraic equation Solvers
 

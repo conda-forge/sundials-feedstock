@@ -1,15 +1,15 @@
 /* -----------------------------------------------------------------
  * Programmer(s): Radu Serban @ LLNL
  * -----------------------------------------------------------------
- * LLNS Copyright Start
- * Copyright (c) 2017, Lawrence Livermore National Security
- * This work was performed under the auspices of the U.S. Department 
- * of Energy by Lawrence Livermore National Laboratory in part under 
- * Contract W-7405-Eng-48 and in part under Contract DE-AC52-07NA27344.
- * Produced at the Lawrence Livermore National Laboratory.
+ * SUNDIALS Copyright Start
+ * Copyright (c) 2002-2020, Lawrence Livermore National Security
+ * and Southern Methodist University.
  * All rights reserved.
- * For details, see the LICENSE file.
- * LLNS Copyright End
+ *
+ * See the top-level LICENSE and NOTICE files for details.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ * SUNDIALS Copyright End
  * -----------------------------------------------------------------
  * Example problem:
  *
@@ -26,7 +26,7 @@
  * central differencing, and with boundary values eliminated,
  * leaving an ODE system of size NEQ = MX*MY.
  * This program solves the problem with the BDF method, Newton
- * iteration with the LAPACK band linear solver, and a user-supplied
+ * iteration with the LAPACKBAND linear solver, and a user-supplied
  * Jacobian routine.
  * It uses scalar relative and absolute tolerances.
  * Output is printed at t = .1, .2, ..., 1.
@@ -195,6 +195,8 @@ int main(void)
 
   N_VDestroy(u);          /* Free the u vector */
   CVodeFree(&cvode_mem);  /* Free the integrator memory */
+  SUNLinSolFree(LS);      /* Free linear solver memory  */
+  SUNMatDestroy(A);       /* Free the matrix memory     */
   free(data);             /* Free the user data */
 
   return(0);
@@ -339,9 +341,6 @@ static void PrintHeader(realtype reltol, realtype abstol, realtype umax)
 #if defined(SUNDIALS_EXTENDED_PRECISION)
   printf("Tolerance parameters: reltol = %Lg   abstol = %Lg\n\n", reltol, abstol);
   printf("At t = %Lg      max.norm(u) =%14.6Le \n", T0, umax);
-#elif defined(SUNDIALS_DOUBLE_PRECISION)
-  printf("Tolerance parameters: reltol = %g   abstol = %g\n\n", reltol, abstol);
-  printf("At t = %g      max.norm(u) =%14.6e \n", T0, umax);
 #else
   printf("Tolerance parameters: reltol = %g   abstol = %g\n\n", reltol, abstol);
   printf("At t = %g      max.norm(u) =%14.6e \n", T0, umax);
@@ -356,8 +355,6 @@ static void PrintOutput(realtype t, realtype umax, long int nst)
 {
 #if defined(SUNDIALS_EXTENDED_PRECISION)
   printf("At t = %4.2Lf   max.norm(u) =%14.6Le   nst = %4ld\n", t, umax, nst);
-#elif defined(SUNDIALS_DOUBLE_PRECISION)
-  printf("At t = %4.2f   max.norm(u) =%14.6e   nst = %4ld\n", t, umax, nst);
 #else
   printf("At t = %4.2f   max.norm(u) =%14.6e   nst = %4ld\n", t, umax, nst);
 #endif
