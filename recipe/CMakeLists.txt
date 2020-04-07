@@ -18,12 +18,9 @@ set(SUNDIALS_LIBS_LIST
   kinsol
   nvecserial
   nvecopenmp
+  sunlinsolklu
   sunlinsollapackband
 )
-
-if (NOT WIN32)
-    set(SUNDIALS_LIBS_LIST sunlinsolklu "${SUNDIALS_LIBS_LIST}")
-endif()
 
 foreach(LIB ${SUNDIALS_LIBS_LIST})
   find_library (SUNDIALS_LIB_${LIB} sundials_${LIB})
@@ -33,26 +30,34 @@ endforeach ()
 include_directories (${SUNDIALS_INCLUDE_DIR})
 
 add_executable (cvRoberts_dns cvRoberts_dns.c)
-add_executable (cvAdvDiff_bndL cvAdvDiff_bndL.c)
 target_link_libraries (cvRoberts_dns LINK_PUBLIC ${SUNDIALS_LIB_cvode} ${SUNDIALS_LIB_nvecserial})
-target_link_libraries (cvAdvDiff_bndL LINK_PUBLIC ${SUNDIALS_LIB_cvode} ${SUNDIALS_LIB_nvecserial} ${SUNDIALS_LIB_sunlinsollapackband})
-if (UNIX)
-  target_link_libraries (cvAdvDiff_bndL LINK_PUBLIC m)
-endif ()
 add_test (test_roberts_dns cvRoberts_dns)
-add_test (test_advdiff_bndL cvAdvDiff_bndL)
 
-if (SUNDIALS_LIB_sunlinsolklu)
+
+if (NOT WIN32)
+#if (SUNDIALS_LIB_sunlinsolklu)
   add_executable (cvRoberts_klu cvRoberts_klu.c)
   target_link_libraries (cvRoberts_klu LINK_PUBLIC ${SUNDIALS_LIB_cvode} ${SUNDIALS_LIB_nvecserial} ${SUNDIALS_LIB_sunlinsolklu})
   add_test (test_roberts_klu cvRoberts_klu)
+#endif()
+
+#if (SUNDIALS_LIB_sunlinsollapackband)
+  add_executable (cvAdvDiff_bndL cvAdvDiff_bndL.c)
+  target_link_libraries (cvAdvDiff_bndL LINK_PUBLIC ${SUNDIALS_LIB_cvode} ${SUNDIALS_LIB_nvecserial} ${SUNDIALS_LIB_sunlinsollapackband})
+  if (UNIX)
+      target_link_libraries (cvAdvDiff_bndL LINK_PUBLIC m)
+  endif ()
+  add_test (test_advdiff_bndL cvAdvDiff_bndL)
+#endif()
 endif()
 
-if (SUNDIALS_LIB_nvecopenmp)
+if (NOT WIN32 AND NOT APPLE)
+#if (SUNDIALS_LIB_nvecopenmp)
   add_executable (cvAdvDiff_bnd_omp cvAdvDiff_bnd_omp.c)
   target_link_libraries (cvAdvDiff_bnd_omp LINK_PUBLIC ${SUNDIALS_LIB_cvode} ${SUNDIALS_LIB_nvecopenmp})
   if (UNIX)
     target_link_libraries (cvAdvDiff_bnd_omp LINK_PUBLIC m)
   endif ()
   add_test (test_advdiff_omp cvAdvDiff_bnd_omp)
-endif ()
+#endif ()
+endif()
