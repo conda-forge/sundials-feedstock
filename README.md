@@ -3,7 +3,7 @@ About sundials
 
 Home: http://computation.llnl.gov/casc/sundials/main.html
 
-Package license: BSD 3-Clause
+Package license: BSD-3-Clause
 
 Feedstock license: BSD 3-Clause
 
