@@ -1,5 +1,5 @@
 {% set name = "sundials" %}
-{% set version = "5.4.0" %}
+{% set version = "5.5.0" %}
 
 package:
   name: {{ name }}
@@ -8,7 +8,7 @@ package:
 source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
-  sha256: 04d8a2ebe02cdaeef5a9e22ff7e3146bb563d8400f65772b6c7af80001413ffa
+  sha256: 2a755e89aab96d2ff096a4e30bf00bb162e80be20e9e99f424dccfb249098237
 
 build:
   number: 0
