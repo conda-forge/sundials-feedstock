@@ -2,6 +2,8 @@ c_compiler:
 - gcc
 c_compiler_version:
 - '7'
+cdt_name:
+- cos6
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -13,8 +15,11 @@ cxx_compiler_version:
 docker_image:
 - condaforge/linux-anvil-comp7
 liblapack:
-- 3.8.0 *netlib
+- 3.8 *netlib
 suitesparse:
 - '5.6'
 target_platform:
 - linux-64
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
