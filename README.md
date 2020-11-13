@@ -5,11 +5,9 @@ Home: http://computation.llnl.gov/casc/sundials/main.html
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/sundials-feedstock/blob/master/LICENSE.txt)
 
 Summary: SUite of Nonlinear and DIfferential/ALgebraic equation Solvers
-
-
 
 Current build status
 ====================
