@@ -6,18 +6,18 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: http://computation.llnl.gov/projects/{{ name }}/download/{{ name }}-{{ version }}.tar.gz
   sha256: 04d8a2ebe02cdaeef5a9e22ff7e3146bb563d8400f65772b6c7af80001413ffa
 
 build:
-  number: 1
+  number: 2
   run_exports:
     - {{ pin_subpackage('sundials', max_pin='x.x') }}
 
 requirements:
   build:
     - cmake
+    - make   # [unix]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
@@ -38,9 +38,6 @@ test:
     - cvRoberts_klu.c
     - cvAdvDiff_bndL.c
     - cvAdvDiff_bnd_omp.c
-  commands:
-    - conda inspect linkages -p ${PREFIX} sundials  # [not win]
-    - conda inspect objects -p ${PREFIX} sundials  # [osx]
 
 about:
   home: http://computation.llnl.gov/casc/sundials/main.html
