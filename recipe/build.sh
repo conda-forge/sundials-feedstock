@@ -11,7 +11,7 @@ else
     WITH_OPENMP=1
 fi
 
-cmake \
+cmake ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \
