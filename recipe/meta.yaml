@@ -28,17 +28,8 @@ requirements:
     - suitesparse  # [not win]
 
 test:
-  requires:
-    - cmake
-    - make  # [not win]
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-  files:
-    - CMakeLists.txt
-    - cvRoberts_dns.c
-    - cvRoberts_klu.c
-    - cvAdvDiff_bndL.c
-    - cvAdvDiff_bnd_omp.c
+  commands:
+    - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]
 
 about:
   home: http://computation.llnl.gov/casc/sundials/main.html
