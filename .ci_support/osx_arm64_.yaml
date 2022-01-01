@@ -12,6 +12,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '11'
+libblas:
+- 3.9 *netlib
 liblapack:
 - 3.9 *netlib
 macos_machine:
