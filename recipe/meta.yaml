@@ -24,9 +24,9 @@ requirements:
     - msinttypes  # [win and vc<14]
     - libblas  # [not win]
     - liblapack  # [not win]
-    - suitesparse  # [not win]
+    #- suitesparse  # [not win]
   run:
-    - suitesparse  # [not win]
+    #- suitesparse  # [not win]
 
 test:
   commands:

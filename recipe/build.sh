@@ -11,7 +11,7 @@ else
     WITH_OPENMP=1
 fi
 
-cmake ${CMAKE_ARGS} \
+cmake -LAH ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \
@@ -27,11 +27,14 @@ cmake ${CMAKE_ARGS} \
     -DCMAKE_INSTALL_RPATH="${PREFIX}/lib" \
     -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
     -DCMAKE_MACOSX_RPATH=ON \
-    -DENABLE_KLU=ON \
+    -DENABLE_KLU=OFF \
     -DKLU_LIBRARY_DIR=${PREFIX}/lib \
     -DSUNDIALS_F77_FUNC_CASE="LOWER" -DSUNDIALS_F77_FUNC_UNDERSCORES="ONE" \
     -DSUNDIALS_INDEX_SIZE=32 \
     ..  # int32_t needed for Lapack not to be disabled
 
+grep -nr blis .
+#exit 1
+make install -j${CPU_COUNT} VERBOSE=1
+ldd ${PREFIX}/lib/libsundials_sunlinsollapackdense.so
 
-make install -j${CPU_COUNT}
