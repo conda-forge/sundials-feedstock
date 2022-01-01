@@ -12,12 +12,12 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '11'
+libblas:
+- 3.8 *netlib
 liblapack:
 - 3.8 *netlib
 macos_machine:
 - x86_64-apple-darwin13.4.0
-suitesparse:
-- '5'
 target_platform:
 - osx-64
 zip_keys:

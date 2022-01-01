@@ -18,10 +18,10 @@ cxx_compiler_version:
 - '9'
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64
+libblas:
+- 3.8 *netlib
 liblapack:
 - 3.8 *netlib
-suitesparse:
-- '5'
 target_platform:
 - linux-aarch64
 zip_keys:
