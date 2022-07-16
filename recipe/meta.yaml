@@ -32,7 +32,7 @@ test:
     - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]
 
 about:
-  home: http://computation.llnl.gov/casc/sundials/main.html
+  home: https://computing.llnl.gov/projects/sundials
   license: BSD-3-Clause
   license_file: LICENSE
   summary: SUite of Nonlinear and DIfferential/ALgebraic equation Solvers
