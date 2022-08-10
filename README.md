@@ -1,7 +1,7 @@
 About sundials
 ==============
 
-Home: http://computation.llnl.gov/casc/sundials/main.html
+Home: https://computing.llnl.gov/projects/sundials
 
 Package license: BSD-3-Clause
 
