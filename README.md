@@ -1,11 +1,11 @@
-About sundials
-==============
+About sundials-feedstock
+========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/sundials-feedstock/blob/main/LICENSE.txt)
 
 Home: https://computing.llnl.gov/projects/sundials
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/sundials-feedstock/blob/main/LICENSE.txt)
 
 Summary: SUite of Nonlinear and DIfferential/ALgebraic equation Solvers
 
