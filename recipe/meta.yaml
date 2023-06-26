@@ -10,7 +10,7 @@ source:
   sha256: 30f3deb6a59d840eb9b91fa77e9a4a7c6026ba1bb63fd65e9d57c786d1c8725c
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('sundials', max_pin='x.x') }}
 
