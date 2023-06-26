@@ -1,5 +1,16 @@
 #!/bin/sh
 
+# local superlu install
+curl -fSsL https://portal.nersc.gov/project/sparse/superlu/superlu_mt_3.1.tar.gz | tar xz
+cd SuperLU_MT_3.1
+if test `uname` = "Linux"
+then
+  MPLIB="-fopenmp"
+fi
+make CC=${CC} CFLAGS="-O2 -fPIC ${MPLIB}" BLASLIB="-lblas" PLAT="_OPENMP" MPLIB=${MPLIB} lib -j1
+mv SRC include
+cd -
+
 mkdir build
 cd build
 
@@ -29,6 +40,9 @@ cmake ${CMAKE_ARGS} \
     -DCMAKE_MACOSX_RPATH=ON \
     -DENABLE_KLU=ON \
     -DKLU_LIBRARY_DIR=${PREFIX}/lib \
+    -DENABLE_SUPERLUMT=ON \
+    -DSUPERLUMT_THREAD_TYPE=OPENMP \
+    -DSUPERLUMT_LIBRARY=$PWD/../SuperLU_MT_3.1/lib/libsuperlu_mt_OPENMP.a \
     -DSUNDIALS_F77_FUNC_CASE="LOWER" -DSUNDIALS_F77_FUNC_UNDERSCORES="ONE" \
     -DSUNDIALS_INDEX_SIZE=32 \
     ..  # int32_t needed for Lapack not to be disabled
