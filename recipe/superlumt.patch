@@ -1,0 +1,13 @@
+diff --git a/include/sundials/sundials_config.in b/include/sundials/sundials_config.in
+index 545c1aebe..4c79b4004 100644
+--- a/include/sundials/sundials_config.in
++++ b/include/sundials/sundials_config.in
+@@ -131,7 +131,7 @@
+ #cmakedefine01 SUNDIALS_MPI_ENABLED
+ 
+  /* SUPERLUMT threading type */
+-#cmakedefine SUNDIALS_SUPERLUMT_THREAD_TYPE "@SUPERLUMT_THREAD_TYPE@"
++#define SUNDIALS_SUPERLUMT_THREAD_TYPE "@SUPERLUMT_THREAD_TYPE@"
+ 
+  /* Trilinos with MPI is available, then
+   *    #define SUNDIALS_TRILINOS_HAVE_MPI
