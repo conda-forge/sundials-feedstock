@@ -22,7 +22,7 @@ else
     WITH_OPENMP=1
 fi
 
-cmake ${CMAKE_ARGS} \
+cmake ${CMAKE_ARGS} -LAH \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \
@@ -47,5 +47,5 @@ cmake ${CMAKE_ARGS} \
     -DSUNDIALS_INDEX_SIZE=32 \
     ..  # int32_t needed for Lapack not to be disabled
 
-
 make install -j${CPU_COUNT}
+cat ${PREFIX}/include/sundials/sundials_config.h
