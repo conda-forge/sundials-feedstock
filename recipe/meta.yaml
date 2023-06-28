@@ -12,7 +12,7 @@ source:
     # missing SUPERLUMT define for assimulo
     - superlumt.patch
 build:
-  number: 2
+  number: 3
   run_exports:
     - {{ pin_subpackage('sundials', max_pin='x.x') }}
 

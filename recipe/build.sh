@@ -43,6 +43,7 @@ cmake ${CMAKE_ARGS} -LAH \
     -DENABLE_SUPERLUMT=ON \
     -DSUPERLUMT_THREAD_TYPE=OPENMP \
     -DSUPERLUMT_LIBRARY=$PWD/../SuperLU_MT_3.1/lib/libsuperlu_mt_OPENMP.a \
+    -DSUPERLUMT_LIBRARIES="$PWD/../SuperLU_MT_3.1/lib/libsuperlu_mt_OPENMP.a;blas" \
     -DSUNDIALS_F77_FUNC_CASE="LOWER" -DSUNDIALS_F77_FUNC_UNDERSCORES="ONE" \
     -DSUNDIALS_INDEX_SIZE=32 \
     ..  # int32_t needed for Lapack not to be disabled
