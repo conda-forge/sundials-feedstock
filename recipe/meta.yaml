@@ -1,5 +1,5 @@
 {% set name = "sundials" %}
-{% set version = "6.6.0" %}
+{% set version = "6.6.1" %}
 
 package:
   name: {{ name }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: e10e624e6104cbf77c3f934f5bfb2d7a7fca8fadef1d2a0f4d433ecb7ec4b71c
+  sha256: 4830d6f6943e95a6edf33a90a7181ce5bece28efe6d21e1e39ea1135708a948f
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage('sundials', max_pin='x.x') }}
 
