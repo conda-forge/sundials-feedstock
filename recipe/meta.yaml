@@ -10,14 +10,13 @@ source:
   sha256: 4830d6f6943e95a6edf33a90a7181ce5bece28efe6d21e1e39ea1135708a948f
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('sundials', max_pin='x.x') }}
 
 requirements:
   build:
     - cmake
-    - make   # [unix]
     - ninja
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}

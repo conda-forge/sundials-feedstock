@@ -1,18 +1,9 @@
 #!/bin/sh
 
 # local superlu install
-curl -fSsL https://portal.nersc.gov/project/sparse/superlu/superlu_mt_3.1.tar.gz | tar xz
-cd SuperLU_MT_3.1
-if test `uname` = "Linux"
-then
-  MPLIB="-fopenmp"
-fi
-make CC=${CC} CFLAGS="-O2 -fPIC ${MPLIB}" BLASLIB="-lblas" PLAT="_OPENMP" MPLIB=${MPLIB} lib -j1
-mv SRC include
-cd -
-
-mkdir build
-cd build
+git clone --depth 1 https://github.com/xiaoyeli/superlu_mt.git
+cmake ${CMAKE_ARGS} -LAH -G "Ninja" -B build_slu -S superlu_mt -DCMAKE_PREFIX_PATH=${PREFIX} -DPLAT="_OPENMP" -DBUILD_SHARED_LIBS=OFF
+cmake --build build_slu --parallel ${CPU_COUNT}
 
 # EXAMPLES_ENABLE=1 enables tests to be run (requires Python)
 
@@ -22,7 +13,7 @@ else
     WITH_OPENMP=1
 fi
 
-cmake ${CMAKE_ARGS} -LAH \
+cmake ${CMAKE_ARGS} -LAH -G "Ninja" -B build \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_BUILD_TYPE=Release \
@@ -42,11 +33,11 @@ cmake ${CMAKE_ARGS} -LAH \
     -DKLU_LIBRARY_DIR=${PREFIX}/lib \
     -DENABLE_SUPERLUMT=ON \
     -DSUPERLUMT_THREAD_TYPE=OPENMP \
-    -DSUPERLUMT_LIBRARY=$PWD/../SuperLU_MT_3.1/lib/libsuperlu_mt_OPENMP.a \
-    -DSUPERLUMT_LIBRARIES="$PWD/../SuperLU_MT_3.1/lib/libsuperlu_mt_OPENMP.a;blas" \
+    -DSUPERLUMT_INCLUDE_DIR="$PWD/superlu_mt/SRC" \
+    -DSUPERLUMT_LIBRARY=$PWD/build_slu/SRC/libsuperlu_mt_OPENMP.a \
+    -DSUPERLUMT_LIBRARIES="$PWD/build_slu/SRC/libsuperlu_mt_OPENMP.a;blas" \
     -DSUNDIALS_F77_FUNC_CASE="LOWER" -DSUNDIALS_F77_FUNC_UNDERSCORES="ONE" \
-    -DSUNDIALS_INDEX_SIZE=32 \
-    ..  # int32_t needed for Lapack not to be disabled
+    -DSUNDIALS_INDEX_SIZE=32  # int32_t needed for Lapack not to be disabled
 
-make install -j${CPU_COUNT}
+cmake --build build --target install --parallel ${CPU_COUNT}
 cat ${PREFIX}/include/sundials/sundials_config.h
