@@ -1,0 +1,220 @@
+From edf5b080065b3fa95a4bc2edf812c0227df5ee2c Mon Sep 17 00:00:00 2001
+From: Julien Schueller <schueller@phimeca.com>
+Date: Wed, 20 Sep 2023 12:25:53 +0200
+Subject: [PATCH] CMake: Fix soversion
+
+Signed-off-by: Julien Schueller <schueller@phimeca.com>
+---
+ CHANGELOG.md                               | 2 ++
+ src/sunlinsol/band/CMakeLists.txt          | 2 +-
+ src/sunlinsol/cusolversp/CMakeLists.txt    | 2 +-
+ src/sunlinsol/dense/CMakeLists.txt         | 2 +-
+ src/sunlinsol/klu/CMakeLists.txt           | 2 +-
+ src/sunlinsol/lapackband/CMakeLists.txt    | 2 +-
+ src/sunlinsol/lapackdense/CMakeLists.txt   | 2 +-
+ src/sunlinsol/pcg/CMakeLists.txt           | 2 +-
+ src/sunlinsol/spbcgs/CMakeLists.txt        | 2 +-
+ src/sunlinsol/spfgmr/CMakeLists.txt        | 2 +-
+ src/sunlinsol/spgmr/CMakeLists.txt         | 2 +-
+ src/sunlinsol/sptfqmr/CMakeLists.txt       | 2 +-
+ src/sunlinsol/superludist/CMakeLists.txt   | 2 +-
+ src/sunlinsol/superlumt/CMakeLists.txt     | 2 +-
+ src/sunnonlinsol/fixedpoint/CMakeLists.txt | 2 +-
+ src/sunnonlinsol/newton/CMakeLists.txt     | 2 +-
+ 16 files changed, 17 insertions(+), 15 deletions(-)
+
+diff --git a/src/sunlinsol/band/CMakeLists.txt b/src/sunlinsol/band/CMakeLists.txt
+index 6d912ecf13..3041c51c38 100644
+--- a/src/sunlinsol/band/CMakeLists.txt
++++ b/src/sunlinsol/band/CMakeLists.txt
+@@ -34,7 +34,7 @@ sundials_add_library(sundials_sunlinsolband
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++  ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_BAND module")
+diff --git a/src/sunlinsol/cusolversp/CMakeLists.txt b/src/sunlinsol/cusolversp/CMakeLists.txt
+index 7d1539624c..e2e7f95589 100644
+--- a/src/sunlinsol/cusolversp/CMakeLists.txt
++++ b/src/sunlinsol/cusolversp/CMakeLists.txt
+@@ -33,7 +33,7 @@ sundials_add_library(sundials_sunlinsolcusolversp
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++  ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_CUSOLVERSP module")
+diff --git a/src/sunlinsol/dense/CMakeLists.txt b/src/sunlinsol/dense/CMakeLists.txt
+index ad8e0e4e07..40e10cd3bd 100644
+--- a/src/sunlinsol/dense/CMakeLists.txt
++++ b/src/sunlinsol/dense/CMakeLists.txt
+@@ -34,7 +34,7 @@ sundials_add_library(sundials_sunlinsoldense
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++    ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_DENSE module")
+diff --git a/src/sunlinsol/klu/CMakeLists.txt b/src/sunlinsol/klu/CMakeLists.txt
+index ee39c58795..69c4eb0ddc 100644
+--- a/src/sunlinsol/klu/CMakeLists.txt
++++ b/src/sunlinsol/klu/CMakeLists.txt
+@@ -33,7 +33,7 @@ sundials_add_library(sundials_sunlinsolklu
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++  ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_KLU module")
+diff --git a/src/sunlinsol/lapackband/CMakeLists.txt b/src/sunlinsol/lapackband/CMakeLists.txt
+index 48ffb2b399..a89e132998 100644
+--- a/src/sunlinsol/lapackband/CMakeLists.txt
++++ b/src/sunlinsol/lapackband/CMakeLists.txt
+@@ -33,7 +33,7 @@ sundials_add_library(sundials_sunlinsollapackband
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++  ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_LAPACKBAND module")
+diff --git a/src/sunlinsol/lapackdense/CMakeLists.txt b/src/sunlinsol/lapackdense/CMakeLists.txt
+index 947085e320..e52a4b6825 100644
+--- a/src/sunlinsol/lapackdense/CMakeLists.txt
++++ b/src/sunlinsol/lapackdense/CMakeLists.txt
+@@ -33,7 +33,7 @@ sundials_add_library(sundials_sunlinsollapackdense
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++  ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_LAPACKDENSE module")
+diff --git a/src/sunlinsol/pcg/CMakeLists.txt b/src/sunlinsol/pcg/CMakeLists.txt
+index 21c0e7f70e..9094ba0e45 100644
+--- a/src/sunlinsol/pcg/CMakeLists.txt
++++ b/src/sunlinsol/pcg/CMakeLists.txt
+@@ -32,7 +32,7 @@ sundials_add_library(sundials_sunlinsolpcg
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++  ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_PCG module")
+diff --git a/src/sunlinsol/spbcgs/CMakeLists.txt b/src/sunlinsol/spbcgs/CMakeLists.txt
+index a1c678328b..e7446be084 100644
+--- a/src/sunlinsol/spbcgs/CMakeLists.txt
++++ b/src/sunlinsol/spbcgs/CMakeLists.txt
+@@ -32,7 +32,7 @@ sundials_add_library(sundials_sunlinsolspbcgs
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++  ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_SPBCGS module")
+diff --git a/src/sunlinsol/spfgmr/CMakeLists.txt b/src/sunlinsol/spfgmr/CMakeLists.txt
+index 660f8e7576..817fbda37c 100644
+--- a/src/sunlinsol/spfgmr/CMakeLists.txt
++++ b/src/sunlinsol/spfgmr/CMakeLists.txt
+@@ -31,7 +31,7 @@ sundials_add_library(sundials_sunlinsolspfgmr
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++  ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_SPFGMR module")
+diff --git a/src/sunlinsol/spgmr/CMakeLists.txt b/src/sunlinsol/spgmr/CMakeLists.txt
+index 5e4bbd8356..df03282a92 100644
+--- a/src/sunlinsol/spgmr/CMakeLists.txt
++++ b/src/sunlinsol/spgmr/CMakeLists.txt
+@@ -31,7 +31,7 @@ sundials_add_library(sundials_sunlinsolspgmr
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++    ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_SPGMR module")
+diff --git a/src/sunlinsol/sptfqmr/CMakeLists.txt b/src/sunlinsol/sptfqmr/CMakeLists.txt
+index d5f4c35e7f..86f06b8b1b 100644
+--- a/src/sunlinsol/sptfqmr/CMakeLists.txt
++++ b/src/sunlinsol/sptfqmr/CMakeLists.txt
+@@ -31,7 +31,7 @@ sundials_add_library(sundials_sunlinsolsptfqmr
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++    ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_SPTFQMR module")
+diff --git a/src/sunlinsol/superludist/CMakeLists.txt b/src/sunlinsol/superludist/CMakeLists.txt
+index 189a844ee8..0d7ad0803f 100644
+--- a/src/sunlinsol/superludist/CMakeLists.txt
++++ b/src/sunlinsol/superludist/CMakeLists.txt
+@@ -39,7 +39,7 @@ sundials_add_library(sundials_sunlinsolsuperludist
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++  ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_SUPERLUDIST module")
+diff --git a/src/sunlinsol/superlumt/CMakeLists.txt b/src/sunlinsol/superlumt/CMakeLists.txt
+index 6d1a075fad..f2a1e9ff66 100644
+--- a/src/sunlinsol/superlumt/CMakeLists.txt
++++ b/src/sunlinsol/superlumt/CMakeLists.txt
+@@ -43,7 +43,7 @@ sundials_add_library(sundials_sunlinsolsuperlumt
+   VERSION
+     ${sunlinsollib_VERSION}
+   SOVERSION
+-    ${sunlinsollib_VERSION}
++  ${sunlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNLINSOL_SUPERLUMT module")
+diff --git a/src/sunnonlinsol/fixedpoint/CMakeLists.txt b/src/sunnonlinsol/fixedpoint/CMakeLists.txt
+index 2b19f025c5..50d520be5e 100644
+--- a/src/sunnonlinsol/fixedpoint/CMakeLists.txt
++++ b/src/sunnonlinsol/fixedpoint/CMakeLists.txt
+@@ -31,7 +31,7 @@ sundials_add_library(sundials_sunnonlinsolfixedpoint
+   VERSION
+     ${sunnonlinsollib_VERSION}
+   SOVERSION
+-    ${sunnonlinsollib_VERSION}
++    ${sunnonlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNNONLINSOL_FIXEDPOINT module")
+diff --git a/src/sunnonlinsol/newton/CMakeLists.txt b/src/sunnonlinsol/newton/CMakeLists.txt
+index 64d2dcba56..54856d2d55 100644
+--- a/src/sunnonlinsol/newton/CMakeLists.txt
++++ b/src/sunnonlinsol/newton/CMakeLists.txt
+@@ -31,7 +31,7 @@ sundials_add_library(sundials_sunnonlinsolnewton
+   VERSION
+     ${sunnonlinsollib_VERSION}
+   SOVERSION
+-    ${sunnonlinsollib_VERSION}
++  ${sunnonlinsollib_SOVERSION}
+ )
+ 
+ message(STATUS "Added SUNNONLINSOL_NEWTON module")

@@ -8,9 +8,12 @@ package:
 source:
   url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: a7eb5be8ee1bc736b6c7a096941c9af89835c1123e3f4e9e4ff557b6611ec249
+  patches:
+    # https://github.com/LLNL/sundials/pull/343
+    - soversion.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('sundials', max_pin='x.x') }}
 
