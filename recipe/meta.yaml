@@ -8,9 +8,6 @@ package:
 source:
   url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: d434d00a68d0f18dc2c8f4c306e4becf62ac6d37a259253ec9ea616152babba4
-  patches:
-    # https://github.com/LLNL/sundials/pull/343
-    - soversion.patch
 
 build:
   number: 0
