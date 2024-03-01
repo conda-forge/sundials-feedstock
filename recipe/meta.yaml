@@ -20,6 +20,7 @@ requirements:
     - ninja
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}  # [unix]
   host:
     - libblas
     - liblapack  # [not win]
