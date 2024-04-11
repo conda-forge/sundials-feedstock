@@ -2,40 +2,67 @@
 {% set version = "7.0.0" %}
 
 package:
-  name: {{ name }}
+  name: {{ name }}-split
   version: {{ version }}
 
 source:
   url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: 63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6
+  patches:
+    - fix-win-static-and-shared.patch  # [win]
 
 build:
-  number: 0
-  run_exports:
-    - {{ pin_subpackage('sundials', max_pin='x.x') }}
+  number: 1
 
-requirements:
-  build:
-    - cmake
-    - ninja
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - {{ compiler('fortran') }}  # [unix]
-  host:
-    - libblas
-    - liblapack  # [not win]
-    - suitesparse  # [not win]
-  run:
-    - suitesparse  # [not win]
+outputs:
+  - name: {{ name }}
+    script: build-sundials.sh   # [unix]
+    script: bld-sundials.bat  # [win]
+    run_exports:
+      - {{ pin_subpackage('sundials', max_pin='x.x') }}
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('fortran') }}  # [unix]
+      host:
+        - libblas
+        - liblapack  # [not win]
+        - suitesparse  # [not win]
+      run:
+        - suitesparse  # [not win]
+    test:
+      commands:
+        - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]
 
-test:
-  commands:
-    - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]
+  - name: {{ name }}-devel
+    script: build-sundials.sh   # [unix]
+    script: bld-sundials.bat  # [win]
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('fortran') }}  # [unix]
+      host:
+        - libblas
+        - liblapack  # [not win]
+        - suitesparse  # [not win]
+      run:
+        - suitesparse  # [not win]
+    test:
+      commands:
+        - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]
 
 about:
   home: https://computing.llnl.gov/projects/sundials
   license: BSD-3-Clause
-  license_file: LICENSE
+  license_file:
+    - LICENSE
+    - SUPERLU_MT_LICENSE
   summary: SUite of Nonlinear and DIfferential/ALgebraic equation Solvers
 
 extra:
