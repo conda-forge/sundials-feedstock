@@ -6,10 +6,12 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6
-  patches:
-    - fix-win-static-and-shared.patch  # [win]
+  - url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz
+    sha256: 63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6
+    patches:
+      - fix-win-static-and-shared.patch  # [win]
+  - url: https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip
+    sha256: 6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972
 
 build:
   number: 1
@@ -36,6 +38,40 @@ outputs:
     test:
       commands:
         - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]
+        - test -e ${PREFIX}/lib/sundials_core${SHLIB_EXT}  # [unix]
+        - test -e ${PREFIX}/lib/sundials_core${SHLIB_EXT}  # [unix]
+        - test ! -e ${PREFIX}/lib/sundials_core.a  # [unix]
+        - if not exist %LIBRARY_PREFIX%\include\sundials\sundials_band.h (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\sundials_core.dll (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\sundials_core.lib (exit 1)  # [win]
+        - if exist %LIBRARY_PREFIX%\lib\sundials_core_static.lib (exit 1)  # [win]
+
+  - name: {{ name }}-static
+    script: build-sundials.sh   # [unix]
+    script: bld-sundials.bat  # [win]
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('fortran') }}  # [unix]
+      host:
+        - libblas
+        - liblapack  # [not win]
+        - suitesparse  # [not win]
+      run:
+        - suitesparse  # [not win]
+    test:
+      commands:
+        - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]
+        - test ! -e ${PREFIX}/lib/sundials_core${SHLIB_EXT}  # [unix]
+        - test ! -e ${PREFIX}/lib/sundials_core${SHLIB_EXT}  # [unix]
+        - test -e ${PREFIX}/lib/sundials_core.a  # [unix]
+        - if not exist %LIBRARY_PREFIX%\include\sundials\sundials_band.h (exit 1)  # [win]
+        - if exist %LIBRARY_PREFIX%\lib\sundials_core.dll (exit 1)  # [win]
+        - if exist %LIBRARY_PREFIX%\lib\sundials_core.lib (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\sundials_core_static.lib (exit 1)  # [win]
 
   - name: {{ name }}-devel
     script: build-sundials.sh   # [unix]
@@ -56,6 +92,13 @@ outputs:
     test:
       commands:
         - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]
+        - test -e ${PREFIX}/lib/sundials_core${SHLIB_EXT}  # [unix]
+        - test -e ${PREFIX}/lib/sundials_core${SHLIB_EXT}  # [unix]
+        - test -e ${PREFIX}/lib/sundials_core_static.a  # [unix]
+        - if not exist %LIBRARY_PREFIX%\include\sundials\sundials_band.h (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\sundials_core.dll (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\sundials_core.lib (exit 1)  # [win]
+        - if not exist %LIBRARY_PREFIX%\lib\sundials_core_static.lib (exit 1)  # [win]
 
 about:
   home: https://computing.llnl.gov/projects/sundials

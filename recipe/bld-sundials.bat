@@ -1,19 +1,25 @@
 @echo ON
 
-if not exist "superlu_mt" (
-    git clone --depth 1 https://github.com/xiaoyeli/superlu_mt.git
-    if errorlevel 1 exit 1
-)
-cmake -LAH -G "Ninja" -B build_slu -S superlu_mt -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -DPLAT="_OPENMP" -DBUILD_SHARED_LIBS=OFF
+cmake -LAH -G "Ninja" -B superlu_mt/build -S superlu_mt -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -DPLAT="_OPENMP" -DBUILD_SHARED_LIBS=OFF
 if errorlevel 1 exit 1
-cmake --build build_slu  --target install --config Release
+cmake --build superlu_mt/build --target install --config Release
 if errorlevel 1 exit 1
 
-cmake -LAH -G "Ninja" -B build ^
+set SUNDIALS_BUILD_SHARED=ON
+if /I "%PKG_NAME%" == "sundial-static" (
+    set SUNDIALS_BUILD_SHARED=OFF
+)
+
+set SUNDIALS_BUILD_STATIC=ON
+if /I "%PKG_NAME%" == "sundials" (
+    set SUNDIALS_BUILD_STATIC=OFF
+)
+
+cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -DCMAKE_BUILD_TYPE=Release ^
-    -DBUILD_SHARED_LIBS=ON ^
-    -DBUILD_STATIC_LIBS=ON ^
+    -DBUILD_SHARED_LIBS=%SUNDIALS_BUILD_SHARED% ^
+    -DBUILD_STATIC_LIBS=%SUNDIALS_BUILD_STATIC% ^
     -DEXAMPLES_ENABLE_C=ON ^
     -DEXAMPLES_INSTALL=OFF ^
     -DENABLE_OPENMP=OFF ^
@@ -28,5 +34,5 @@ cmake -LAH -G "Ninja" -B build ^
     -S .
 if errorlevel 1 exit 1
 
-cmake --build build --target install --config Release
+cmake --build sundials/build --target install --config Release
 if errorlevel 1 exit 1
