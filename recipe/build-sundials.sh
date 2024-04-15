@@ -10,13 +10,13 @@ else
     WITH_OPENMP=1
 fi
 
-if [[ $PKG_NAME == "sundials-devel" ] || [ $PKG_NAME == "sundials" ]]; then
+if [[ $PKG_NAME == "sundials-devel" || $PKG_NAME == "sundials" ]]; then
     SUNDIALS_BUILD_SHARED=ON
 else
     SUNDIALS_BUILD_SHARED=OFF
 fi
 
-if [[ $PKG_NAME == "sundials-devel" ] || [ $PKG_NAME == "sundials-static" ]]; then
+if [[ $PKG_NAME == "sundials-devel" || $PKG_NAME == "sundials-static" ]]; then
     SUNDIALS_BUILD_STATIC=ON
 else
     SUNDIALS_BUILD_STATIC=OFF
