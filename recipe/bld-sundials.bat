@@ -6,7 +6,7 @@ cmake --build superlu_mt/build --target install --config Release
 if errorlevel 1 exit 1
 
 set SUNDIALS_BUILD_SHARED=ON
-if /I "%PKG_NAME%" == "sundial-static" (
+if /I "%PKG_NAME%" == "sundials-static" (
     set SUNDIALS_BUILD_SHARED=OFF
 )
 
