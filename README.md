@@ -1,5 +1,5 @@
-About sundials-feedstock
-========================
+About sundials-split-feedstock
+==============================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/sundials-feedstock/blob/main/LICENSE.txt)
 
@@ -82,27 +82,29 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-sundials-green.svg)](https://anaconda.org/conda-forge/sundials) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/sundials.svg)](https://anaconda.org/conda-forge/sundials) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/sundials.svg)](https://anaconda.org/conda-forge/sundials) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/sundials.svg)](https://anaconda.org/conda-forge/sundials) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-sundials--devel-green.svg)](https://anaconda.org/conda-forge/sundials-devel) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/sundials-devel.svg)](https://anaconda.org/conda-forge/sundials-devel) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/sundials-devel.svg)](https://anaconda.org/conda-forge/sundials-devel) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/sundials-devel.svg)](https://anaconda.org/conda-forge/sundials-devel) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-sundials--static-green.svg)](https://anaconda.org/conda-forge/sundials-static) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/sundials-static.svg)](https://anaconda.org/conda-forge/sundials-static) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/sundials-static.svg)](https://anaconda.org/conda-forge/sundials-static) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/sundials-static.svg)](https://anaconda.org/conda-forge/sundials-static) |
 
-Installing sundials
-===================
+Installing sundials-split
+=========================
 
-Installing `sundials` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `sundials-split` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `sundials` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `sundials, sundials-devel, sundials-static` can be installed with `conda`:
 
 ```
-conda install sundials
+conda install sundials sundials-devel sundials-static
 ```
 
 or with `mamba`:
 
 ```
-mamba install sundials
+mamba install sundials sundials-devel sundials-static
 ```
 
 It is possible to list all of the versions of `sundials` available on your platform with `conda`:
@@ -172,17 +174,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating sundials-feedstock
-===========================
+Updating sundials-split-feedstock
+=================================
 
-If you would like to improve the sundials recipe or build a new
+If you would like to improve the sundials-split recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/sundials-feedstock are
+Note that all branches in the conda-forge/sundials-split-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.

@@ -40,6 +40,7 @@ cmake ${CMAKE_ARGS} -LAH -G "Ninja" -B sundials/build -S sundials \
     -DCMAKE_MACOSX_RPATH=ON \
     -DENABLE_KLU=ON \
     -DKLU_LIBRARY_DIR=${PREFIX}/lib \
+    -DKLU_INCLUDE_DIR=${PREFIX}/include/suitesparse \
     -DENABLE_SUPERLUMT=ON \
     -DSUPERLUMT_THREAD_TYPE=OPENMP \
     -DSUPERLUMT_INCLUDE_DIR="${PREFIX}/include/superlu_mt" \
