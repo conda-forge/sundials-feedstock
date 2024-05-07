@@ -16,7 +16,7 @@ source:
     sha256: 6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: {{ name }}
@@ -29,6 +29,7 @@ outputs:
         - cmake
         - ninja
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - {{ compiler('fortran') }}  # [unix]
       host:
@@ -56,6 +57,7 @@ outputs:
         - cmake
         - ninja
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - {{ compiler('fortran') }}  # [unix]
       host:
@@ -83,6 +85,7 @@ outputs:
         - cmake
         - ninja
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - {{ compiler('fortran') }}  # [unix]
       host:
