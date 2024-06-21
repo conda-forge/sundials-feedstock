@@ -1,5 +1,5 @@
 {% set name = "sundials" %}
-{% set version = "7.0.0" %}
+{% set version = "7.1.0" %}
 
 package:
   name: {{ name }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: 63d1f76207161612f36f5017d8333e00e5297b0cd8cbc4628f5dd54102c763a6
+    sha256: 9f01ba976716f74d2bf76ebe035a426da0592b76322c9f5b104d8cf27c40e435
     folder: sundials
     patches:
       - fix-win-static-and-shared.patch  # [win]
@@ -17,11 +17,11 @@ source:
     sha256: 6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972
 
 build:
-  number: 4
+  number: 0
 
 outputs:
   - name: {{ name }}
-    script: build-sundials.sh   # [unix]
+    script: build-sundials.sh  # [unix]
     script: bld-sundials.bat  # [win]
     run_exports:
       - {{ pin_subpackage('sundials', max_pin='x.x') }}
@@ -51,7 +51,7 @@ outputs:
         - if exist %LIBRARY_PREFIX%\lib\sundials_core_static.lib (exit 1)  # [win]
 
   - name: {{ name }}-static
-    script: build-sundials.sh   # [unix]
+    script: build-sundials.sh  # [unix]
     script: bld-sundials.bat  # [win]
     requirements:
       build:
@@ -79,7 +79,7 @@ outputs:
         - if not exist %LIBRARY_PREFIX%\lib\sundials_core_static.lib (exit 1)  # [win]
 
   - name: {{ name }}-devel
-    script: build-sundials.sh   # [unix]
+    script: build-sundials.sh  # [unix]
     script: bld-sundials.bat  # [win]
     requirements:
       build:
