@@ -9,8 +9,6 @@ source:
   - url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz
     sha256: 9f01ba976716f74d2bf76ebe035a426da0592b76322c9f5b104d8cf27c40e435
     folder: sundials
-    patches:
-      - fix-win-static-and-shared.patch  # [win]
   - url: https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip
     folder: superlu_mt
     sha256: 6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972
