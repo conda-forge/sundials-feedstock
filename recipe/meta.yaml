@@ -11,7 +11,6 @@ source:
     folder: sundials
     patches:
       - fix-win-static-and-shared.patch  # [win]
-      - bindir.patch
   - url: https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip
     folder: superlu_mt
     sha256: 6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972
