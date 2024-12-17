@@ -14,7 +14,7 @@ source:
     sha256: 6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: {{ name }}
@@ -29,7 +29,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
-        - {{ compiler('fortran') }}  # [unix]
+        - {{ compiler("fortran") }}
       host:
         - libblas
         - liblapack  # [not win]
@@ -57,7 +57,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
-        - {{ compiler('fortran') }}  # [unix]
+        - {{ compiler("fortran") }}
       host:
         - libblas
         - liblapack  # [not win]
@@ -85,7 +85,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
-        - {{ compiler('fortran') }}  # [unix]
+        - {{ compiler("fortran") }}
       host:
         - libblas
         - liblapack  # [not win]
