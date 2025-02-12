@@ -14,7 +14,7 @@ source:
     sha256: 6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: {{ name }}
@@ -32,10 +32,10 @@ outputs:
         - {{ compiler("fortran") }}
       host:
         - libblas
-        - liblapack  # [not win]
-        - suitesparse  # [not win]
+        - liblapack
+        - suitesparse
       run:
-        - suitesparse  # [not win]
+        - suitesparse
     test:
       commands:
         - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]
@@ -60,10 +60,10 @@ outputs:
         - {{ compiler("fortran") }}
       host:
         - libblas
-        - liblapack  # [not win]
-        - suitesparse  # [not win]
+        - liblapack
+        - suitesparse
       run:
-        - suitesparse  # [not win]
+        - suitesparse
     test:
       commands:
         - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]
@@ -88,10 +88,10 @@ outputs:
         - {{ compiler("fortran") }}
       host:
         - libblas
-        - liblapack  # [not win]
-        - suitesparse  # [not win]
+        - liblapack
+        - suitesparse
       run:
-        - suitesparse  # [not win]
+        - suitesparse
     test:
       commands:
         - test -f ${PREFIX}/include/sundials/sundials_band.h  # [unix]

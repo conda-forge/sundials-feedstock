@@ -23,9 +23,13 @@ cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
     -DEXAMPLES_ENABLE_C=ON ^
     -DEXAMPLES_INSTALL=OFF ^
     -DENABLE_OPENMP=OFF ^
-    -DENABLE_LAPACK=OFF ^
-    -DENABLE_SUPERLUMT=ON ^
+    -DENABLE_LAPACK=ON ^
+    -DLAPACK_LIBRARIES="lapack;blas" ^
     -DCMAKE_C_FLAGS="/DWIN32 /D_WINDOWS /W3 /D__OPENMP" ^
+    -DENABLE_KLU=ON ^
+    -DKLU_LIBRARY_DIR="%LIBRARY_PREFIX%/lib" ^
+    -DKLU_INCLUDE_DIR="%LIBRARY_PREFIX%/include/suitesparse" ^
+    -DENABLE_SUPERLUMT=ON ^
     -DSUPERLUMT_THREAD_TYPE=OPENMP ^
     -DSUPERLUMT_LIBRARY="superlu_mt_OPENMP.lib" ^
     -DSUPERLUMT_LIBRARIES="%LIBRARY_PREFIX:\=/%/lib/superlu_mt_OPENMP.lib;blas" ^
