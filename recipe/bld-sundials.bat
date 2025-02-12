@@ -16,7 +16,7 @@ if /I "%PKG_NAME%" == "sundials" (
 )
 
 cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
-    -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
+    -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX:\=/% ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DBUILD_SHARED_LIBS=%SUNDIALS_BUILD_SHARED% ^
     -DBUILD_STATIC_LIBS=%SUNDIALS_BUILD_STATIC% ^
