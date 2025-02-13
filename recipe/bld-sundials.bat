@@ -31,7 +31,9 @@ cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
     -DBUILD_STATIC_LIBS=%SUNDIALS_BUILD_STATIC% ^
     -DEXAMPLES_ENABLE_C=ON ^
     -DEXAMPLES_INSTALL=OFF ^
-    -DENABLE_OPENMP=OFF ^
+    -DENABLE_OPENMP=ON ^
+    -DOpenMP_Fortran_FLAGS=-fopenmp ^
+    -DOpenMP_Fortran_LIB_NAMES=libomp ^
     -DENABLE_LAPACK=ON ^
     -DLAPACK_LIBRARIES="lapack;blas" ^
     -DCMAKE_C_FLAGS="/DWIN32 /D_WINDOWS /W3 /D__OPENMP" ^
