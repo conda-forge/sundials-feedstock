@@ -34,6 +34,7 @@ cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
     -DENABLE_OPENMP=ON ^
     -DOpenMP_Fortran_FLAGS=-fopenmp ^
     -DOpenMP_Fortran_LIB_NAMES=libomp ^
+    -DOpenMP_libomp_LIBRARY="%SAFE_PREFIX%/libomp.lib" ^
     -DENABLE_LAPACK=ON ^
     -DLAPACK_LIBRARIES="lapack;blas" ^
     -DCMAKE_C_FLAGS="/DWIN32 /D_WINDOWS /W3 /D__OPENMP" ^
