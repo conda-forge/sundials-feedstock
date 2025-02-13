@@ -11,6 +11,7 @@ cmake -LAH -G "Ninja" -B superlu_mt/build -S superlu_mt ^
     -DPLAT="_OPENMP" ^
     -DBUILD_SHARED_LIBS=OFF
 if errorlevel 1 exit 1
+
 cmake --build superlu_mt/build --target install --config Release
 if errorlevel 1 exit 1
 
@@ -39,7 +40,7 @@ cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
     -DLAPACK_LIBRARIES="lapack;blas" ^
     -DCMAKE_C_FLAGS="/DWIN32 /D_WINDOWS /W3 /D__OPENMP" ^
     -DENABLE_KLU=ON ^
-    -DKLU_SAFE_DIR="%SAFE_PREFIX%/lib" ^
+    -DKLU_LIBRARY_DIR="%SAFE_PREFIX%/lib" ^
     -DKLU_INCLUDE_DIR="%SAFE_PREFIX%/include/suitesparse" ^
     -DKLU_LIBRARY="%SAFE_PREFIX%/lib/klu.lib" ^
     -DAMD_LIBRARY="%SAFE_PREFIX%/lib/amd.lib" ^

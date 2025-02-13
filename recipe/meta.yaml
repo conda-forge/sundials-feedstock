@@ -92,6 +92,7 @@ outputs:
         - libblas
         - liblapack
         - suitesparse
+        - llvm-openmp-fortran  # [win]
       run:
         - suitesparse
     test:
