@@ -34,6 +34,7 @@ outputs:
         - libblas
         - liblapack
         - suitesparse
+        - llvm-openmp-fortran  # [win]
       run:
         - suitesparse
     test:
@@ -62,6 +63,7 @@ outputs:
         - libblas
         - liblapack
         - suitesparse
+        - llvm-openmp-fortran  # [win]
       run:
         - suitesparse
     test:
