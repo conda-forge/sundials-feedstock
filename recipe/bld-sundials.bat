@@ -2,7 +2,10 @@
 
 set SAFE_PREFIX=%LIBRARY_PREFIX:\=/%
 
-cmake -LAH -G "Ninja" -B superlu_mt/build -S superlu_mt -DCMAKE_INSTALL_PREFIX=%SAFE_PREFIX% -DPLAT="_OPENMP" -DBUILD_SHARED_LIBS=OFF
+cmake -LAH -G "Ninja" -B superlu_mt/build -S superlu_mt ^
+    -DCMAKE_INSTALL_PREFIX=%SAFE_PREFIX% ^
+    -DPLAT="_OPENMP" ^
+    -DBUILD_SHARED_LIBS=OFF
 if errorlevel 1 exit 1
 cmake --build superlu_mt/build --target install --config Release
 if errorlevel 1 exit 1
@@ -17,10 +20,6 @@ if /I "%PKG_NAME%" == "sundials" (
     set SUNDIALS_BUILD_STATIC=OFF
 )
 
-set CMAKE_Fortran_FLAGS=%CMAKE_Fortran_FLAGS:\=/% 
-set CMAKE_Fortran_FLAGS_RELEASE=%CMAKE_Fortran_FLAGS_RELEASE:\=/% 
-set CMAKE_Fortran_FLAGS_DEBUG=%CMAKE_Fortran_FLAGS_DEBUG:\=/% 
-
 cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
     -DCMAKE_INSTALL_PREFIX=%SAFE_PREFIX% ^
     -DCMAKE_BUILD_TYPE=Release ^
@@ -29,8 +28,7 @@ cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
     -DEXAMPLES_ENABLE_C=ON ^
     -DEXAMPLES_INSTALL=OFF ^
     -DENABLE_OPENMP=OFF ^
-    -DENABLE_LAPACK=ON ^
-    -DLAPACK_LIBRARIES="lapack;blas" ^
+    -DENABLE_LAPACK=OFF ^
     -DCMAKE_C_FLAGS="/DWIN32 /D_WINDOWS /W3 /D__OPENMP" ^
     -DENABLE_KLU=ON ^
     -DKLU_SAFE_DIR="%SAFE_PREFIX%/lib" ^
