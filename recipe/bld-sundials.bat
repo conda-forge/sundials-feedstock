@@ -1,6 +1,10 @@
 @echo ON
 
+:: Use forward slashes in LIBRARY_PREFIX - needed for Fortran-compiled LAPACK
 set SAFE_PREFIX=%LIBRARY_PREFIX:\=/%
+
+:: Use forward slashes in FFLAGS - needed for Fortran-compiled LAPACK
+set "FFLAGS=%FFLAGS:\=/%"
 
 cmake -LAH -G "Ninja" -B superlu_mt/build -S superlu_mt ^
     -DCMAKE_INSTALL_PREFIX=%SAFE_PREFIX% ^
@@ -28,7 +32,8 @@ cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
     -DEXAMPLES_ENABLE_C=ON ^
     -DEXAMPLES_INSTALL=OFF ^
     -DENABLE_OPENMP=OFF ^
-    -DENABLE_LAPACK=OFF ^
+    -DENABLE_LAPACK=ON ^
+    -DLAPACK_LIBRARIES="lapack;blas" ^
     -DCMAKE_C_FLAGS="/DWIN32 /D_WINDOWS /W3 /D__OPENMP" ^
     -DENABLE_KLU=ON ^
     -DKLU_SAFE_DIR="%SAFE_PREFIX%/lib" ^
