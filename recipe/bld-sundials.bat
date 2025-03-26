@@ -9,6 +9,7 @@ set "FFLAGS=%FFLAGS:\=/%"
 cmake -LAH -G "Ninja" -B superlu_mt/build -S superlu_mt ^
     -DCMAKE_INSTALL_PREFIX=%SAFE_PREFIX% ^
     -DPLAT="_OPENMP" ^
+    -DBLA_VENDOR=Generic ^
     -DBUILD_SHARED_LIBS=OFF
 if errorlevel 1 exit 1
 
@@ -37,7 +38,7 @@ cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
     -DOpenMP_Fortran_LIB_NAMES=libomp ^
     -DOpenMP_libomp_LIBRARY="%SAFE_PREFIX%/libomp.lib" ^
     -DENABLE_LAPACK=ON ^
-    -DLAPACK_LIBRARIES="lapack;blas" ^
+    -DBLA_VENDOR=Generic ^
     -DCMAKE_C_FLAGS="/DWIN32 /D_WINDOWS /W3 /D__OPENMP" ^
     -DENABLE_KLU=ON ^
     -DKLU_LIBRARY_DIR="%SAFE_PREFIX%/lib" ^
