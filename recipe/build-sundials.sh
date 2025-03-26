@@ -1,7 +1,7 @@
 #!/bin/sh
 set -euxo pipefail
 
-cmake ${CMAKE_ARGS} -LAH -G "Ninja" -B superlu_mt/build -S superlu_mt -DCMAKE_PREFIX_PATH=${PREFIX} -DPLAT="_OPENMP" -DBUILD_SHARED_LIBS=OFF
+cmake ${CMAKE_ARGS} -LAH -G "Ninja" -B superlu_mt/build -S superlu_mt -DCMAKE_PREFIX_PATH=${PREFIX} -DPLAT="_OPENMP" -DBLA_VENDOR=Generic -DBUILD_SHARED_LIBS=OFF
 cmake --build superlu_mt/build --target install --parallel ${CPU_COUNT}
 
 if [ $(uname -s) == 'Darwin' ]; then
@@ -34,7 +34,7 @@ cmake ${CMAKE_ARGS} -LAH -G "Ninja" -B sundials/build -S sundials \
     -DEXAMPLES_INSTALL=OFF \
     -DENABLE_OPENMP=$WITH_OPENMP \
     -DENABLE_LAPACK=ON \
-    -DLAPACK_LIBRARIES="lapack;blas" \
+    -DBLA_VENDOR=Generic \
     -DCMAKE_INSTALL_RPATH="${PREFIX}/lib" \
     -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
     -DCMAKE_MACOSX_RPATH=ON \
