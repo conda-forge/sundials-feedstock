@@ -1,5 +1,5 @@
 {% set name = "sundials" %}
-{% set version = "7.3.0" %}
+{% set version = "7.4.0" %}
 
 package:
   name: {{ name }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: 697b7b0dbc229f149e39b293d1ab03d321d61adb6733ffb78c0ddbffaf73d839
+    sha256: e1615959e196db6d6c45121deece402275eb10a8b6b4896182d532317dcebb2a
     folder: sundials
   - url: https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip
     folder: superlu_mt
