@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/LLNL/{{ name }}/archive/v{{ version }}.tar.gz
-    sha256: e1615959e196db6d6c45121deece402275eb10a8b6b4896182d532317dcebb2a
+    sha256: 3f84277b73922507beae83439b6a234d855fd53ba1f61728111968dea5fac29b
     folder: sundials
   - url: https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip
     folder: superlu_mt
