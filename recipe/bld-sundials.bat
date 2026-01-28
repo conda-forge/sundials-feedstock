@@ -52,6 +52,7 @@ cmake -LAH -G "Ninja" -B sundials/build -S sundials ^
     -DSUPERLUMT_LIBRARY="superlu_mt_OPENMP.lib" ^
     -DSUPERLUMT_LIBRARIES="%SAFE_PREFIX%/lib/superlu_mt_OPENMP.lib;blas" ^
     -DSUPERLUMT_INCLUDE_DIR="%SAFE_PREFIX%/include/superlu_mt" ^
+    -DSUPERLUMT_WORKS=ON ^
     -DSUNDIALS_INDEX_SIZE=32
 if errorlevel 1 exit 1
 

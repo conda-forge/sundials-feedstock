@@ -46,6 +46,7 @@ cmake ${CMAKE_ARGS} -LAH -G "Ninja" -B sundials/build -S sundials \
     -DSUPERLUMT_INCLUDE_DIR="${PREFIX}/include/superlu_mt" \
     -DSUPERLUMT_LIBRARY=libsuperlu_mt_OPENMP.a \
     -DSUPERLUMT_LIBRARIES="${PREFIX}/lib/libsuperlu_mt_OPENMP.a;blas" \
+    -DSUPERLUMT_WORKS=ON \
     -DSUNDIALS_INDEX_SIZE=32  # int32_t needed for Lapack not to be disabled
 
 cmake --build sundials/build --target install --parallel ${CPU_COUNT}
