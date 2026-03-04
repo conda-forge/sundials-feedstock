@@ -1,0 +1,146 @@
+context:
+  version: "7.6.0"
+
+recipe:
+  name: sundials-split
+  version: ${{ version }}
+
+source:
+  - url: https://github.com/LLNL/sundials/archive/v${{ version }}.tar.gz
+    sha256: 3e84f9e162d994d034b214279c1e5df2e2758e97051a466a5788ff9f3ff0b7be
+    target_directory: sundials
+  - url: https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip
+    target_directory: superlu_mt
+    sha256: 6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972
+
+build:
+  number: 1
+
+outputs:
+  - package:
+      name: sundials
+    build:
+      script:
+        - if: unix
+          then: build-sundials.sh
+          else: bld-sundials.bat
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - ${{ compiler("fortran") }}
+      host:
+        - libblas
+        - liblapack
+        - suitesparse
+        - if: win
+          then: llvm-openmp-fortran
+      run:
+        - suitesparse
+      run_exports:
+        - ${{ pin_subpackage('sundials', upper_bound='x.x') }}
+    tests:
+      - script:
+          - if: unix
+            then:
+              - test -f ${PREFIX}/include/sundials/sundials_band.h
+              - test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}
+              - test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}
+              - test ! -e ${PREFIX}/lib/libsundials_core.a
+            else:
+              - if not exist %LIBRARY_PREFIX%\include\sundials\sundials_band.h (exit 1)
+              - if not exist %LIBRARY_PREFIX%\bin\sundials_core.dll (exit 1)
+              - if not exist %LIBRARY_PREFIX%\lib\sundials_core.lib (exit 1)
+              - if exist %LIBRARY_PREFIX%\lib\sundials_core_static.lib (exit 1)
+
+  - package:
+      name: sundials-static
+    build:
+      script:
+        - if: unix
+          then: build-sundials.sh
+          else: bld-sundials.bat
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - ${{ compiler("fortran") }}
+      host:
+        - libblas
+        - liblapack
+        - suitesparse
+        - if: win
+          then: llvm-openmp-fortran
+      run:
+        - suitesparse
+    tests:
+      - script:
+        - if: unix
+          then:
+            - test -f ${PREFIX}/include/sundials/sundials_band.h
+            - test -f ${PREFIX}/include/sunlinsol/sunlinsol_superlumt.h
+            - test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}
+            - test -e ${PREFIX}/lib/libsundials_core.a
+          else:
+            - if not exist %LIBRARY_PREFIX%\include\sundials\sundials_band.h (exit 1)
+            - if not exist %LIBRARY_PREFIX%\include\sunlinsol\sunlinsol_superlumt.h (exit 1)
+            - if exist %LIBRARY_PREFIX%\bin\sundials_core.dll (exit 1)
+            - if exist %LIBRARY_PREFIX%\lib\sundials_core.lib (exit 1)
+            - if not exist %LIBRARY_PREFIX%\lib\sundials_core_static.lib (exit 1)
+
+  - package:
+      name: sundials-devel
+    build:
+      script:
+        - if: unix
+          then: build-sundials.sh
+          else: bld-sundials.bat
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
+        - ${{ compiler("fortran") }}
+      host:
+        - libblas
+        - liblapack
+        - suitesparse
+        - if: win
+          then: llvm-openmp-fortran
+      run:
+        - suitesparse
+    tests:
+      - script:
+          - if: unix
+            then:
+              - test -f ${PREFIX}/include/sundials/sundials_band.h
+              - test -f ${PREFIX}/include/sunlinsol/sunlinsol_superlumt.h
+              - test -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}
+              - test -e ${PREFIX}/lib/libsundials_core.a
+            else:
+              - if not exist %LIBRARY_PREFIX%\include\sundials\sundials_band.h (exit 1)
+              - if not exist %LIBRARY_PREFIX%\include\sunlinsol\sunlinsol_superlumt.h (exit 1)
+              - if not exist %LIBRARY_PREFIX%\bin\sundials_core.dll (exit 1)
+              - if not exist %LIBRARY_PREFIX%\lib\sundials_core.lib (exit 1)
+              - if not exist %LIBRARY_PREFIX%\lib\sundials_core_static.lib (exit 1)
+
+about:
+  homepage: https://computing.llnl.gov/projects/sundials
+  license: BSD-3-Clause
+  license_file:
+    - sundials/LICENSE
+    - superlu_mt/License.txt
+  summary: SUite of Nonlinear and DIfferential/ALgebraic equation Solvers
+
+extra:
+  recipe-maintainers:
+    - bjodah
+    - jschueller
