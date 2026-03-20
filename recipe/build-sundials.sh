@@ -4,12 +4,6 @@ set -euxo pipefail
 cmake ${CMAKE_ARGS} -LAH -G "Ninja" -B superlu_mt/build -S superlu_mt -DCMAKE_PREFIX_PATH=${PREFIX} -DPLAT="_OPENMP" -DBLA_VENDOR=Generic -DBUILD_SHARED_LIBS=OFF
 cmake --build superlu_mt/build --target install --parallel ${CPU_COUNT}
 
-if [ $(uname -s) == 'Darwin' ]; then
-    WITH_OPENMP=0  # CMake script fails to setup OpenMP_C_FLAGS anyway 
-else
-    WITH_OPENMP=1
-fi
-
 if [[ $PKG_NAME == "sundials-devel" || $PKG_NAME == "sundials" ]]; then
     SUNDIALS_BUILD_SHARED=ON
 else
@@ -32,7 +26,7 @@ cmake ${CMAKE_ARGS} -LAH -G "Ninja" -B sundials/build -S sundials \
     -DCMAKE_C_STANDARD=11 \
     -DEXAMPLES_ENABLE_C=ON \
     -DEXAMPLES_INSTALL=OFF \
-    -DENABLE_OPENMP=$WITH_OPENMP \
+    -DENABLE_OPENMP=ON \
     -DENABLE_LAPACK=ON \
     -DBLA_VENDOR=Generic \
     -DCMAKE_INSTALL_RPATH="${PREFIX}/lib" \

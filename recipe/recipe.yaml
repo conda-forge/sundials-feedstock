@@ -38,6 +38,8 @@ outputs:
         - suitesparse
         - if: win
           then: llvm-openmp-fortran
+        - if: osx
+          then: llvm-openmp
       run:
         - suitesparse
       run_exports:
@@ -77,6 +79,8 @@ outputs:
         - suitesparse
         - if: win
           then: llvm-openmp-fortran
+        - if: osx
+          then: llvm-openmp
       run:
         - suitesparse
     tests:
@@ -115,6 +119,8 @@ outputs:
         - suitesparse
         - if: win
           then: llvm-openmp-fortran
+        - if: osx
+          then: llvm-openmp
       run:
         - suitesparse
     tests:
