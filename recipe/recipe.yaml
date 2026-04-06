@@ -1,5 +1,5 @@
 context:
-  version: "7.6.0"
+  version: "7.7.0"
 
 recipe:
   name: sundials-split
@@ -7,14 +7,14 @@ recipe:
 
 source:
   - url: https://github.com/LLNL/sundials/archive/v${{ version }}.tar.gz
-    sha256: 3e84f9e162d994d034b214279c1e5df2e2758e97051a466a5788ff9f3ff0b7be
+    sha256: 89a1d4252b740f3097bc324f63389cc90e74d808199d22d5499bce27912e1d06
     target_directory: sundials
   - url: https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip
     target_directory: superlu_mt
     sha256: 6b2a914209c1e007ccbfb0aa864b9782377ef45262376b611a193963e43c1972
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - package:
@@ -85,18 +85,18 @@ outputs:
         - suitesparse
     tests:
       - script:
-        - if: unix
-          then:
-            - test -f ${PREFIX}/include/sundials/sundials_band.h
-            - test -f ${PREFIX}/include/sunlinsol/sunlinsol_superlumt.h
-            - test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}
-            - test -e ${PREFIX}/lib/libsundials_core.a
-          else:
-            - if not exist %LIBRARY_PREFIX%\include\sundials\sundials_band.h (exit 1)
-            - if not exist %LIBRARY_PREFIX%\include\sunlinsol\sunlinsol_superlumt.h (exit 1)
-            - if exist %LIBRARY_PREFIX%\bin\sundials_core.dll (exit 1)
-            - if exist %LIBRARY_PREFIX%\lib\sundials_core.lib (exit 1)
-            - if not exist %LIBRARY_PREFIX%\lib\sundials_core_static.lib (exit 1)
+          - if: unix
+            then:
+              - test -f ${PREFIX}/include/sundials/sundials_band.h
+              - test -f ${PREFIX}/include/sunlinsol/sunlinsol_superlumt.h
+              - test ! -e ${PREFIX}/lib/libsundials_core${SHLIB_EXT}
+              - test -e ${PREFIX}/lib/libsundials_core.a
+            else:
+              - if not exist %LIBRARY_PREFIX%\include\sundials\sundials_band.h (exit 1)
+              - if not exist %LIBRARY_PREFIX%\include\sunlinsol\sunlinsol_superlumt.h (exit 1)
+              - if exist %LIBRARY_PREFIX%\bin\sundials_core.dll (exit 1)
+              - if exist %LIBRARY_PREFIX%\lib\sundials_core.lib (exit 1)
+              - if not exist %LIBRARY_PREFIX%\lib\sundials_core_static.lib (exit 1)
 
   - package:
       name: sundials-devel
