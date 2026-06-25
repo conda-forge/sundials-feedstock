@@ -1,5 +1,5 @@
 context:
-  version: "7.7.0"
+  version: "7.8.0"
 
 recipe:
   name: sundials-split
@@ -7,7 +7,7 @@ recipe:
 
 source:
   - url: https://github.com/LLNL/sundials/archive/v${{ version }}.tar.gz
-    sha256: 89a1d4252b740f3097bc324f63389cc90e74d808199d22d5499bce27912e1d06
+    sha256: c2ca15a16d7ae0d79cf1c2c288335f16b0f1c2c6d349db20aff2ce3fd1296d5a
     target_directory: sundials
   - url: https://github.com/xiaoyeli/superlu_mt/archive/3d805210e95bb5b86b9ec3ade0e200714b6964dc.zip
     target_directory: superlu_mt
